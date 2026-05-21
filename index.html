@@ -25,29 +25,10 @@
     .container {
       width: 90%;
       max-width: 1000px;
-      padding: 8px;
-      background: linear-gradient(to right, #d1d5db 0%, #e5e7eb 50%, #d1d5db 100%);
-      border-radius: 20px;
-      box-shadow: inset 0 1px 0 0 #ffffff, inset -1px -1px 0 0 #808080;
-      position: relative;
-    }
-
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      right: 8px;
-      bottom: 8px;
-      background: #ffffff;
-      border-radius: 16px;
-      z-index: 0;
-    }
-
-    .inner-content {
-      position: relative;
-      z-index: 1;
       padding: 32px;
+      background: #e5e7eb;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     h1 {
@@ -169,44 +150,42 @@
 <body>
 
   <div class="container">
-    <div class="inner-content">
 
-      <h1>Savings Calculator</h1>
+    <h1>Savings Calculator</h1>
 
-      <div class="time-buttons">
-        <button>Yearly</button>
-        <button>Monthly</button>
-        <button>Weekly</button>
+    <div class="time-buttons">
+      <button>Yearly</button>
+      <button>Monthly</button>
+      <button>Weekly</button>
+    </div>
+
+    <div class="content">
+
+      <div class="left-side">
+
+        <label for="income">Income(Per Month)</label>
+        <input type="number" id="income" placeholder="Enter income">
+
+        <label for="bills">Household Bills(Per Month)</label>
+        <input type="number" id="bills" placeholder="Enter household bills">
+
+        <label for="payments">Monthly Payments(Per Month)</label>
+        <input type="number" id="payments" placeholder="Enter monthly payments">
+
+        <button class="calculate-btn" onclick="calculateSavings()">
+          Calculate
+        </button>
+
       </div>
 
-      <div class="content">
-
-        <div class="left-side">
-
-          <label for="income">Income(Per Month)</label>
-          <input type="number" id="income" placeholder="Enter income">
-
-          <label for="bills">Household Bills(Per Month)</label>
-          <input type="number" id="bills" placeholder="Enter household bills">
-
-          <label for="payments">Monthly Payments(Per Month)</label>
-          <input type="number" id="payments" placeholder="Enter monthly payments">
-
-          <button class="calculate-btn" onclick="calculateSavings()">
-            Calculate
-          </button>
-
+      <div class="right-side">
+        <div class="result-box" id="result">
+          Result: 0 Ft
         </div>
-
-        <div class="right-side">
-          <div class="result-box" id="result">
-            Result: 0 Ft
-          </div>
-        </div>
-
       </div>
 
     </div>
+
   </div>
 
   <script>
