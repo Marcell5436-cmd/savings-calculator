@@ -1,41 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List Application</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Savings Calculator</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #111827;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      padding: 40px;
+      background: #1f2937;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 3rem;
+    }
+
+    .time-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .time-buttons button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      background-color: #2563eb;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.2s;
+    }
+
+    .time-buttons button:hover {
+      background-color: #1d4ed8;
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+
+    .left-side {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .left-side label {
+      display: block;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    .left-side input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .calculate-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background-color: #10b981;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .calculate-btn:hover {
+      background-color: #059669;
+    }
+
+    .right-side {
+      flex: 1;
+      min-width: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .result-box {
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      background-color: #374151;
+      padding: 40px;
+      border-radius: 20px;
+      width: 100%;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .result-box {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="todo-app">
-            <h1>My To-Do List</h1>
-            
-            <div class="input-container">
-                <input 
-                    type="text" 
-                    id="todoInput" 
-                    placeholder="Add a new task..."
-                    autocomplete="off"
-                >
-                <button id="addBtn" class="add-btn">Add Task</button>
-            </div>
 
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="active">Active</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-            </div>
+  <div class="container">
 
-            <ul id="todoList" class="todo-list"></ul>
+    <h1>Savings Calculator</h1>
 
-            <div class="stats">
-                <span id="taskCount">0 tasks remaining</span>
-                <button id="clearBtn" class="clear-btn">Clear Completed</button>
-            </div>
-        </div>
+    <div class="time-buttons">
+      <button>Yearly</button>
+      <button>Monthly</button>
+      <button>Weekly</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="content">
+
+      <div class="left-side">
+
+        <label for="income">Income (x)</label>
+        <input type="number" id="income" placeholder="Enter income">
+
+        <label for="bills">Household Bills</label>
+        <input type="number" id="bills" placeholder="Enter household bills">
+
+        <label for="payments">Monthly Payments (y)</label>
+        <input type="number" id="payments" placeholder="Enter monthly payments">
+
+        <button class="calculate-btn" onclick="calculateSavings()">
+          Calculate
+        </button>
+
+      </div>
+
+      <div class="right-side">
+        <div class="result-box" id="result">
+          Result: 0 Ft
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    function calculateSavings() {
+
+      let income = Number(document.getElementById("income").value);
+
+      let bills = Number(document.getElementById("bills").value);
+
+      let payments = Number(document.getElementById("payments").value);
+
+      let result = income - bills - payments;
+
+      document.getElementById("result").innerText =
+        "Result: " + result + " Ft";
+    }
+  </script>
+
 </body>
 </html>
